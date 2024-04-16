@@ -26,11 +26,7 @@ class TimerService : Service() {
             set(value) {this@TimerService.isRunning = value}
 
         // Start a new timer
-        fun start(startValue: Int, timerHandler : Handler?){
-
-            timerHandler?.run {
-
-            }
+        fun start(startValue: Int){
 
             if (!paused) {
                 if (!isRunning) {
@@ -53,12 +49,10 @@ class TimerService : Service() {
         fun pause() {
             this@TimerService.pause()
         }
-
     }
 
     override fun onCreate() {
         super.onCreate()
-
         Log.d("TimerService status", "Created")
     }
 

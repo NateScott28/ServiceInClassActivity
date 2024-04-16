@@ -6,7 +6,10 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
+import java.util.logging.Handler
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,16 +39,33 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-        findViewById<Button>(R.id.startButton).setOnClickListener {
-            timerBinder?.start(100)
-        }
+//        findViewById<Button>(R.id.startButton).setOnClickListener {
+//            timerBinder?.start(100)
+//        }
+//
+//        findViewById<Button>(R.id.pauseButton).setOnClickListener {
+//            timerBinder?.pause()
+//        }
+//
+//        findViewById<Button>(R.id.stopButton).setOnClickListener {
+//            timerBinder?.stop()
+//        }
+    }
 
-        findViewById<Button>(R.id.pauseButton).setOnClickListener {
-            timerBinder?.pause()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.main, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.pauseItem -> timerBinder?.pause()
+            R.id.startItem -> timerBinder?.start(100)
+            R.id.stopItem -> timerBinder?.stop()
         }
-        
-        findViewById<Button>(R.id.stopButton).setOnClickListener {
-            timerBinder?.stop()
-        }
+        return super.onOptionsItemSelected(item)
     }
 }
